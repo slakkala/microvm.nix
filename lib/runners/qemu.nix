@@ -207,7 +207,7 @@ lib.warnIf (mem == 2048) ''
     ] ++
     lib.optionals (user != null) [ "-user" user ] ++
     lib.optionals (socket != null) [ "-qmp" "unix:${socket},server,nowait" ] ++
-    lib.optionals (balloonMem > 0) [ "-device" "virtio-balloon,deflate-on-oom=on,free-page-reporting=on" ] ++
+    lib.optionals (balloonMem > 0) [ "-device" "virtio-balloon,deflate-on-oom=on,free-page-reporting=on,id=balloon0" ] ++
     builtins.concatMap ({ image, letter, serial, direct, ... }:
       [ "-drive"
         "id=vd${letter},format=raw,file=${image},if=none,aio=io_uring,discard=unmap${
